@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WizardStoreContainer" CdmEntityContainer="WizardContainer">
+    <EntitySetMapping Name="UzytkownikSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Wizard.Uzytkownik)">
+        <MappingFragment StoreEntitySet="UzytkownikSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NazwaUzytkownika" ColumnName="NazwaUzytkownika" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BazaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Wizard.Baza)">
+        <MappingFragment StoreEntitySet="BazaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NazwaBazy" ColumnName="NazwaBazy" />
+          <ScalarProperty Name="TypZawartosci" ColumnName="TypZawartosci" />
+          <ScalarProperty Name="Zawartosc" ColumnName="Zawartosc" />
+          <ScalarProperty Name="TypPliku" ColumnName="TypPliku" />
+          <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UzytkownikBaza" TypeName="Wizard.UzytkownikBaza" StoreEntitySet="BazaSet">
+      <EndProperty Name="Uzytkownik">
+        <ScalarProperty Name="Id" ColumnName="Uzytkownik_Id" />
+      </EndProperty>
+      <EndProperty Name="Baza">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

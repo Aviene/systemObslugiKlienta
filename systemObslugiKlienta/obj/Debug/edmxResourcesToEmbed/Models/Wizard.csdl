@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Wizard" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="WizardContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UzytkownikSet" EntityType="Wizard.Uzytkownik" />
+    <EntitySet Name="BazaSet" EntityType="Wizard.Baza" />
+    <AssociationSet Name="UzytkownikBaza" Association="Wizard.UzytkownikBaza">
+      <End Role="Uzytkownik" EntitySet="UzytkownikSet" />
+      <End Role="Baza" EntitySet="BazaSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Uzytkownik">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazwaUzytkownika" Type="String" Nullable="false" />
+    <Property Name="Haslo" Type="String" Nullable="false" />
+    <NavigationProperty Name="Baza" Relationship="Wizard.UzytkownikBaza" FromRole="Uzytkownik" ToRole="Baza" />
+  </EntityType>
+  <EntityType Name="Baza">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazwaBazy" Type="String" Nullable="false" />
+    <NavigationProperty Name="Uzytkownik" Relationship="Wizard.UzytkownikBaza" FromRole="Baza" ToRole="Uzytkownik" />
+    <Property Name="TypZawartosci" Type="String" Nullable="false" />
+    <Property Name="Zawartosc" Type="String" Nullable="false" />
+    <Property Name="TypPliku" Type="String" Nullable="false" />
+    <Property Name="UzytkownikId" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="UzytkownikBaza">
+    <End Type="Wizard.Uzytkownik" Role="Uzytkownik" Multiplicity="1" />
+    <End Type="Wizard.Baza" Role="Baza" Multiplicity="*" />
+  </Association>
+</Schema>

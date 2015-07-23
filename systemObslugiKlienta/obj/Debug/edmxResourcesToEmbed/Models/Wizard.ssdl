@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Wizard.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="WizardStoreContainer">
+    <EntitySet Name="UzytkownikSet" EntityType="Wizard.Store.UzytkownikSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BazaSet" EntityType="Wizard.Store.BazaSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UzytkownikBaza" Association="Wizard.Store.UzytkownikBaza">
+      <End Role="Uzytkownik" EntitySet="UzytkownikSet" />
+      <End Role="Baza" EntitySet="BazaSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UzytkownikSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazwaUzytkownika" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Haslo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BazaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazwaBazy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TypZawartosci" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zawartosc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TypPliku" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UzytkownikId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Uzytkownik_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UzytkownikBaza">
+    <End Role="Uzytkownik" Type="Wizard.Store.UzytkownikSet" Multiplicity="1" />
+    <End Role="Baza" Type="Wizard.Store.BazaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uzytkownik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Baza">
+        <PropertyRef Name="Uzytkownik_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
