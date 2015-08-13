@@ -107,3 +107,4 @@ C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\sys
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.csprojResolveAssemblyReference.cache
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.dll
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.pdb
+C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.csprojResolveAssemblyReference.cache

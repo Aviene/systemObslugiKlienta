@@ -58,6 +58,8 @@ namespace systemObslugiKlienta.Controllers
             }
 
             ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", bazaDanych.UzytkownikId);
+            
+            
             return View(bazaDanych);
         }
 
