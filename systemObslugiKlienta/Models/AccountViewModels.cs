@@ -65,6 +65,14 @@ namespace systemObslugiKlienta.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Imie")]
+        public string Imie { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string Nazwisko { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

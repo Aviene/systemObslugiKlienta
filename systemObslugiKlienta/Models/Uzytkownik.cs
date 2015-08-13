@@ -21,6 +21,8 @@ namespace systemObslugiKlienta.Models
 
         //klucz glowny odziedziczony po klasie IdentityUser
 
+
+        //Trzeba w kontrolerze dodać te pola
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
 

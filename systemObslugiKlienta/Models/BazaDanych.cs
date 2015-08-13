@@ -9,6 +9,7 @@ namespace systemObslugiKlienta.Models
 {
     public class BazaDanych
     {
+        [Key]
         public int IdPliku { get; set; }
 
         [StringLength(255)]
@@ -24,7 +25,8 @@ namespace systemObslugiKlienta.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd")]
         public System.DateTime DataDodania { get; set; }
 
-        public int UzytkownikId { get; set; }
+        //Czy da się jakoś na int?
+        public string UzytkownikId { get; set; }
 
         public virtual Uzytkownik Uzytkownik { get; set; }
     }
