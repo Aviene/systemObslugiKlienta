@@ -2,19 +2,50 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using systemObslugiKlienta.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Threading.Tasks;
 
 namespace systemObslugiKlienta.Controllers
 {
+    [Authorize]
     public class BazyDanychController : Controller
     {
         private SystemObslugiKlientaContext db = new SystemObslugiKlientaContext();
+        private UzytkownikManager _userManager;
+
+        public BazyDanychController()
+        {
+
+        }
+        public BazyDanychController(UzytkownikManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+        }
+
+
+        public UzytkownikManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UzytkownikManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: BazyDanych
+         [AllowAnonymous]
         public ActionResult Index()
         {
             var bazyDanych = db.BazyDanych.Include(b => b.Uzytkownik);
@@ -39,6 +70,7 @@ namespace systemObslugiKlienta.Controllers
         // GET: BazyDanych/Create
         public ActionResult Create()
         {
+            
             ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
@@ -48,19 +80,53 @@ namespace systemObslugiKlienta.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPliku,NazwaPliku,TypZawartosci,Zawartosc,TypPliku,DataDodania,UzytkownikId")] BazaDanych bazaDanych)
+        public async Task<ActionResult> Create(HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            BazaDanych bazaDanych = new BazaDanych();
+            var eMail = await UserManager.FindByEmailAsync(this.HttpContext.User.Identity.Name);
+            try
             {
-                db.BazyDanych.Add(bazaDanych);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", bazaDanych.UzytkownikId);
-            
-            
+                if (ModelState.IsValid)
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        var baza = new BazaDanych
+                        {
+                            NazwaPliku = System.IO.Path.GetFileName(upload.FileName),
+                            TypZawartosci = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            baza.Zawartosc = reader.ReadBytes(upload.ContentLength);
+                        }
+                        var user1 = db.Uzytkownik.First(user => user.Id == eMail.Id);
+                        user1.BazyDanych.Add(baza);
+                    }
+                    db.BazyDanych.Add(bazaDanych);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return View(bazaDanych);
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.BazyDanych.Add(bazaDanych);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
+            //ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", bazaDanych.UzytkownikId);
+            
+            
+            //return View(bazaDanych);
         }
 
         // GET: BazyDanych/Edit/5

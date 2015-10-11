@@ -25,6 +25,7 @@ namespace systemObslugiKlienta.Models
         //Trzeba w kontrolerze dodać te pola
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
+        public TypKonta TypKonta { get; set; }
 
 #region dodatkowe pole NotMapped
         [NotMapped]
@@ -35,7 +36,7 @@ namespace systemObslugiKlienta.Models
         }
 #endregion
 
-        public virtual ICollection<BazaDanych> BazyDanych { get; private set; }
+        public virtual ICollection<BazaDanych> BazyDanych { get;  set; }
 
         //kod domyslny
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Uzytkownik> manager)

@@ -7,55 +7,49 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj nową bazę", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Uzytkownik.Email)
+            @Html.DisplayNameFor(model => model.IdPliku)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NazwaPliku)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TypZawartosci)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zawartosc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypPliku)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DataDodania)
         </th>
-        <th></th>
+        <th>
+            <p>Analizuj</p>
+        </th>
+        <th>
+            <p>Usuń</p>
+        </th>
+        <th>
+            <p>Podgląd</p>
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Uzytkownik.Email)
+            @Html.DisplayFor(modelItem => item.IdPliku)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NazwaPliku)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TypZawartosci)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Zawartosc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypPliku)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.DataDodania)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdPliku }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdPliku }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdPliku })
+            @Html.ActionLink("Analizuj", "Edit", new { id = item.IdPliku })
+        </td>
+        <td>
+            @Html.ActionLink("Usuń", "Delete", new { id=item.IdPliku })
+        </td>
+        <td>
+            @Html.ActionLink("Podgląd", "Details", new { id = item.IdPliku })
         </td>
     </tr>
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Web;
 
 namespace systemObslugiKlienta.Models
 {
-    public enum TypPliku
+    public enum TypKonta
     {
-        Baza = 1, Photo
+        Mini, Medium, Large, Extra
     }
 }

@@ -26,6 +26,7 @@ namespace systemObslugiKlienta.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+           // await UserManager.FindByEmailAsync(this.HttpContext.User.Identity.Name);
         }
 
         public ApplicationSignInManager SignInManager
@@ -151,7 +152,7 @@ namespace systemObslugiKlienta.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Uzytkownik { UserName = model.Email, Email = model.Email };
+                var user = new Uzytkownik { UserName = model.Email, Email = model.Email, Imie = model.Imie, Nazwisko = model.Nazwisko, TypKonta = model.TypKonta};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

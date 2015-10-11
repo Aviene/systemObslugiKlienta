@@ -9,6 +9,7 @@ namespace systemObslugiKlienta.Models
 {
     public class SystemObslugiKlientaContext : IdentityDbContext
     {
+
         public SystemObslugiKlientaContext()
             : base("DefaultConnection")
         {

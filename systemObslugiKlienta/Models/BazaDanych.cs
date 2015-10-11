@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations; //Atrybuty
+using System.ComponentModel.DataAnnotations;
+using System.Web; 
 
 namespace systemObslugiKlienta.Models
 {
@@ -19,13 +20,11 @@ namespace systemObslugiKlienta.Models
         public string TypZawartosci { get; set; }
 
         public byte[] Zawartosc { get; set; }
-        public TypPliku TypPliku { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd")]
         public System.DateTime DataDodania { get; set; }
 
-        //Czy da się jakoś na int?
         public string UzytkownikId { get; set; }
 
         public virtual Uzytkownik Uzytkownik { get; set; }
