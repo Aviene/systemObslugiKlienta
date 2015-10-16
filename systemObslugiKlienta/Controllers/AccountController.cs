@@ -16,13 +16,13 @@ namespace systemObslugiKlienta.Controllers
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private UzytkownikManager _userManager;
+        private UserManager _userManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(UzytkownikManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(UserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -41,11 +41,11 @@ namespace systemObslugiKlienta.Controllers
             }
         }
 
-        public UzytkownikManager UserManager
+        public UserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UzytkownikManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>();
             }
             private set
             {
@@ -152,7 +152,7 @@ namespace systemObslugiKlienta.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Uzytkownik { UserName = model.Email, Email = model.Email, Imie = model.Imie, Nazwisko = model.Nazwisko, TypKonta = model.TypKonta};
+                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, AccountType = model.AccountType};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -368,7 +368,7 @@ namespace systemObslugiKlienta.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new Uzytkownik { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

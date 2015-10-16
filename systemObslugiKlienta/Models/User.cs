@@ -12,34 +12,34 @@ using System.Threading.Tasks;
 namespace systemObslugiKlienta.Models
 {
 
-    public class Uzytkownik : IdentityUser
+    public class User : IdentityUser
     {
-        public Uzytkownik()
+        public User()
         {
-            this.BazyDanych = new HashSet<BazaDanych>();
+            this.DataBases = new HashSet<UserDataBase>();
         }
 
         //klucz glowny odziedziczony po klasie IdentityUser
 
 
         //Trzeba w kontrolerze dodać te pola
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public TypKonta TypKonta { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public UserAccountType AccountType { get; set; }
 
 #region dodatkowe pole NotMapped
         [NotMapped]
         [Display(Name = "Pan/Pani:")]
-        public string PelneNazwisko
+        public string FullName
         {
-            get { return Imie + " " + Nazwisko; }
+            get { return FirstName + " " + LastName; }
         }
 #endregion
 
-        public virtual ICollection<BazaDanych> BazyDanych { get;  set; }
+        public virtual ICollection<UserDataBase> DataBases { get;  set; }
 
         //kod domyslny
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Uzytkownik> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);

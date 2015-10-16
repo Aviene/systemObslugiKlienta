@@ -1,4 +1,4 @@
-﻿@model systemObslugiKlienta.Models.BazaDanych
+﻿@model systemObslugiKlienta.Models.UserDataBase
 
 @{
     ViewBag.Title = "Details";
@@ -7,39 +7,39 @@
 <h2>Details</h2>
 
 <div>
-    <h4>BazaDanych</h4>
+    <h4>UserDataBase</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Uzytkownik.Email)
+            @Html.DisplayNameFor(model => model.User.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Uzytkownik.Email)
+            @Html.DisplayFor(model => model.User.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NazwaPliku)
+            @Html.DisplayNameFor(model => model.FileName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NazwaPliku)
+            @Html.DisplayFor(model => model.FileName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TypZawartosci)
+            @Html.DisplayNameFor(model => model.DataContentType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TypZawartosci)
+            @Html.DisplayFor(model => model.DataContentType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Zawartosc)
+            @Html.DisplayNameFor(model => model.DataContent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Zawartosc)
+            @Html.DisplayFor(model => model.DataContent)
         </dd>
 
         <dt>
@@ -51,16 +51,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataDodania)
+            @Html.DisplayNameFor(model => model.AddDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DataDodania)
+            @Html.DisplayFor(model => model.AddDate)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPliku }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FileId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

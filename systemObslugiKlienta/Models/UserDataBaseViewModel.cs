@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations; //Atrybuty
 
 namespace systemObslugiKlienta.Models
 {
-    public class BazaDanychViewModel
+    public class UserDataBaseViewModel
     {
         [Required]
         [StringLength(255)]
-        public string NazwaPliku { get; set; }
+        public string FileName { get; set; }
 
         [Required]
-        public byte[] Zawartosc { get; set; }
+        public byte[] DataContent { get; set; }
 
     }
 }

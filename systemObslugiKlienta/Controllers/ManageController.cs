@@ -14,13 +14,13 @@ namespace systemObslugiKlienta.Controllers
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private UzytkownikManager _userManager;
+        private UserManager _userManager;
 
         public ManageController()
         {
         }
 
-        public ManageController(UzytkownikManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(UserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,11 +38,11 @@ namespace systemObslugiKlienta.Controllers
             }
         }
 
-        public UzytkownikManager UserManager
+        public UserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UzytkownikManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>();
             }
             private set
             {

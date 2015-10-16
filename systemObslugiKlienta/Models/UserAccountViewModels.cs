@@ -65,12 +65,12 @@ namespace systemObslugiKlienta.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Imię")]
-        public string Imie { get; set; }
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Nazwisko")]
-        public string Nazwisko { get; set; }
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
 
         [Required]
         [EmailAddress]
@@ -80,17 +80,17 @@ namespace systemObslugiKlienta.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Powtórz hasło")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Typ konta")]
-        public TypKonta TypKonta { get; set; }
+        [Display(Name = "Account Type")]
+        public UserAccountType AccountType { get; set; }
     }
 
     public class ResetPasswordViewModel

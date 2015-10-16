@@ -17,26 +17,26 @@ using System.Threading.Tasks;
 namespace systemObslugiKlienta.Controllers
 {
     [Authorize]
-    public class BazyDanychController : Controller
+    public class DataBasesController : Controller
     {
         private SystemObslugiKlientaContext db = new SystemObslugiKlientaContext();
-        private UzytkownikManager _userManager;
+        private UserManager _userManager;
 
-        public BazyDanychController()
+        public DataBasesController()
         {
 
         }
-        public BazyDanychController(UzytkownikManager userManager, ApplicationSignInManager signInManager)
+        public DataBasesController(UserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
         }
 
 
-        public UzytkownikManager UserManager
+        public UserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UzytkownikManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>();
             }
             private set
             {
@@ -44,45 +44,45 @@ namespace systemObslugiKlienta.Controllers
             }
         }
 
-        // GET: BazyDanych
+        // GET: DataBases
          [AllowAnonymous]
         public ActionResult Index()
         {
-            var bazyDanych = db.BazyDanych.Include(b => b.Uzytkownik);
-            return View(bazyDanych.ToList());
+            var DataBases = db.DataBases.Include(b => b.User);
+            return View(DataBases.ToList());
         }
 
-        // GET: BazyDanych/Details/5
+        // GET: DataBases/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BazaDanych bazaDanych = db.BazyDanych.Find(id);
-            if (bazaDanych == null)
+            UserDataBase UserDataBase = db.DataBases.Find(id);
+            if (UserDataBase == null)
             {
                 return HttpNotFound();
             }
-            return View(bazaDanych);
+            return View(UserDataBase);
         }
 
-        // GET: BazyDanych/Create
+        // GET: DataBases/Create
         public ActionResult Create()
         {
             
-            ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
-        // POST: BazyDanych/Create
+        // POST: DataBases/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(HttpPostedFileBase upload)
         {
-            BazaDanych bazaDanych = new BazaDanych();
+            UserDataBase UserDataBase = new UserDataBase();
             var eMail = await UserManager.FindByEmailAsync(this.HttpContext.User.Identity.Name);
             try
             {
@@ -91,19 +91,19 @@ namespace systemObslugiKlienta.Controllers
                 {
                     if (upload != null && upload.ContentLength > 0)
                     {
-                        var baza = new BazaDanych
+                        var baza = new UserDataBase
                         {
-                            NazwaPliku = System.IO.Path.GetFileName(upload.FileName),
-                            TypZawartosci = upload.ContentType
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            DataContentType = upload.ContentType
                         };
                         using (var reader = new System.IO.BinaryReader(upload.InputStream))
                         {
-                            baza.Zawartosc = reader.ReadBytes(upload.ContentLength);
+                            baza.DataContent = reader.ReadBytes(upload.ContentLength);
                         }
-                        var user1 = db.Uzytkownik.First(user => user.Id == eMail.Id);
-                        user1.BazyDanych.Add(baza);
+                        var user1 = db.User.First(user => user.Id == eMail.Id);
+                        user1.DataBases.Add(baza);
                     }
-                    db.BazyDanych.Add(bazaDanych);
+                    db.DataBases.Add(UserDataBase);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -113,77 +113,77 @@ namespace systemObslugiKlienta.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
-            return View(bazaDanych);
+            return View(UserDataBase);
 
 
             //if (ModelState.IsValid)
             //{
-            //    db.BazyDanych.Add(bazaDanych);
+            //    db.DataBases.Add(UserDataBase);
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
 
-            //ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", bazaDanych.UzytkownikId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "Email", UserDataBase.UserId);
             
             
-            //return View(bazaDanych);
+            //return View(UserDataBase);
         }
 
-        // GET: BazyDanych/Edit/5
+        // GET: DataBases/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BazaDanych bazaDanych = db.BazyDanych.Find(id);
-            if (bazaDanych == null)
+            UserDataBase UserDataBase = db.DataBases.Find(id);
+            if (UserDataBase == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", bazaDanych.UzytkownikId);
-            return View(bazaDanych);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", UserDataBase.UserId);
+            return View(UserDataBase);
         }
 
-        // POST: BazyDanych/Edit/5
+        // POST: DataBases/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPliku,NazwaPliku,TypZawartosci,Zawartosc,TypPliku,DataDodania,UzytkownikId")] BazaDanych bazaDanych)
+        public ActionResult Edit([Bind(Include = "FileId,FileName,DataContentType,DataContent,TypPliku,AddDate,UserId")] UserDataBase UserDataBase)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bazaDanych).State = EntityState.Modified;
+                db.Entry(UserDataBase).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", bazaDanych.UzytkownikId);
-            return View(bazaDanych);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", UserDataBase.UserId);
+            return View(UserDataBase);
         }
 
-        // GET: BazyDanych/Delete/5
+        // GET: DataBases/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BazaDanych bazaDanych = db.BazyDanych.Find(id);
-            if (bazaDanych == null)
+            UserDataBase UserDataBase = db.DataBases.Find(id);
+            if (UserDataBase == null)
             {
                 return HttpNotFound();
             }
-            return View(bazaDanych);
+            return View(UserDataBase);
         }
 
-        // POST: BazyDanych/Delete/5
+        // POST: DataBases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BazaDanych bazaDanych = db.BazyDanych.Find(id);
-            db.BazyDanych.Remove(bazaDanych);
+            UserDataBase UserDataBase = db.DataBases.Find(id);
+            db.DataBases.Remove(UserDataBase);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

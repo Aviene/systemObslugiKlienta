@@ -5,7 +5,7 @@ using System.Web;
 
 namespace systemObslugiKlienta.Models
 {
-    public enum TypKonta
+    public enum UserAccountType
     {
         Mini, Medium, Large, Extra
     }

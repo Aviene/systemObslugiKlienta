@@ -1,4 +1,4 @@
-﻿@model IEnumerable<systemObslugiKlienta.Models.BazaDanych>
+﻿@model IEnumerable<systemObslugiKlienta.Models.UserDataBase>
 
 @{
     ViewBag.Title = "Index";
@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdPliku)
+            @Html.DisplayNameFor(model => model.FileId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NazwaPliku)
+            @Html.DisplayNameFor(model => model.FileName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataDodania)
+            @Html.DisplayNameFor(model => model.AddDate)
         </th>
         <th>
             <p>Analizuj</p>
@@ -34,22 +34,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.IdPliku)
+            @Html.DisplayFor(modelItem => item.FileId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NazwaPliku)
+            @Html.DisplayFor(modelItem => item.FileName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DataDodania)
+            @Html.DisplayFor(modelItem => item.AddDate)
         </td>
         <td>
-            @Html.ActionLink("Analizuj", "Edit", new { id = item.IdPliku })
+            @Html.ActionLink("Analizuj", "Edit", new { id = item.FileId })
         </td>
         <td>
-            @Html.ActionLink("Usuń", "Delete", new { id=item.IdPliku })
+            @Html.ActionLink("Usuń", "Delete", new { id=item.FileId })
         </td>
         <td>
-            @Html.ActionLink("Podgląd", "Details", new { id = item.IdPliku })
+            @Html.ActionLink("Podgląd", "Details", new { id = item.FileId })
         </td>
     </tr>
 }

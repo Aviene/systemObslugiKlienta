@@ -8,25 +8,25 @@ using System.Web;
 
 namespace systemObslugiKlienta.Models
 {
-    public class BazaDanych
+    public class UserDataBase
     {
         [Key]
-        public int IdPliku { get; set; }
+        public int FileId { get; set; }
 
         [StringLength(255)]
-        public string NazwaPliku { get; set; }
+        public string FileName { get; set; }
 
         [StringLength(100)]
-        public string TypZawartosci { get; set; }
+        public string DataContentType { get; set; }
 
-        public byte[] Zawartosc { get; set; }
+        public byte[] DataContent { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd")]
-        public System.DateTime DataDodania { get; set; }
+        public System.DateTime AddDate { get; set; }
 
-        public string UzytkownikId { get; set; }
+        public string UserId { get; set; }
 
-        public virtual Uzytkownik Uzytkownik { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -19,8 +19,8 @@ namespace systemObslugiKlienta.Models
             return new SystemObslugiKlientaContext();
         }
 
-        public DbSet<BazaDanych> BazyDanych { get; set; }
-        public DbSet<Uzytkownik> Uzytkownik { get; set; }
+        public DbSet<UserDataBase> DataBases { get; set; }
+        public DbSet<User> User { get; set; }
 
         #region Usunięcie domyślnej konwencji zamieniającej na liczby mnogie
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace systemObslugiKlienta.Models
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             //Używa się Fluent API aby ustalić powiązane pomiędzy tabelami i włączyć CascadeDelete tego powiązania
-            modelBuilder.Entity<BazaDanych>().HasRequired(x => x.Uzytkownik).WithMany(x => x.BazyDanych).HasForeignKey(x => x.UzytkownikId).WillCascadeOnDelete(true);
+            modelBuilder.Entity<UserDataBase>().HasRequired(x => x.User).WithMany(x => x.DataBases).HasForeignKey(x => x.UserId).WillCascadeOnDelete(true);
         }
         #endregion
     }
