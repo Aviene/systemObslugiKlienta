@@ -89,6 +89,27 @@ namespace systemObslugiKlienta.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Company Name")]
+        public long CompanyName { get; set; }
+
+        [Required]
+        [Display(Name = "REGON")]
+        public long REGON { get; set; }
+
+        [Required]
+        [Display(Name = "NIP")]
+        public long NIP { get; set; }
+
+        [Required]
         [Display(Name = "Account Type")]
         public UserAccountType AccountType { get; set; }
     }

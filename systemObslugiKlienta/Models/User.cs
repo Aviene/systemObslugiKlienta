@@ -22,10 +22,19 @@ namespace systemObslugiKlienta.Models
         //klucz glowny odziedziczony po klasie IdentityUser
 
 
-        //Trzeba w kontrolerze dodać te pola
+        //User Info
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Address { get; set; }
+        public string CompanyName { get; set; }
+        public long REGON { get; set; }
+        public long NIP { get; set; }
+
+        //System Info
         public UserAccountType AccountType { get; set; }
+        public DateTime RegisterDate { get; set; }
+        public DateTime BlockDate { get; set; }
+        public int IfBlocked { get; set; }
 
 #region dodatkowe pole NotMapped
         [NotMapped]

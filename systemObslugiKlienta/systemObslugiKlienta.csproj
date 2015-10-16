@@ -183,9 +183,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510111416005_Jeden.cs" />
-    <Compile Include="Migrations\201510111416005_Jeden.Designer.cs">
-      <DependentUpon>201510111416005_Jeden.cs</DependentUpon>
+    <Compile Include="Migrations\201510161843063_aaa.cs" />
+    <Compile Include="Migrations\201510161843063_aaa.Designer.cs">
+      <DependentUpon>201510161843063_aaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510161845595_bb.cs" />
+    <Compile Include="Migrations\201510161845595_bb.Designer.cs">
+      <DependentUpon>201510161845595_bb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\UserAccountViewModels.cs" />
@@ -232,7 +236,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -283,8 +289,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510111416005_Jeden.resx">
-      <DependentUpon>201510111416005_Jeden.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510161843063_aaa.resx">
+      <DependentUpon>201510161843063_aaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510161845595_bb.resx">
+      <DependentUpon>201510161845595_bb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
