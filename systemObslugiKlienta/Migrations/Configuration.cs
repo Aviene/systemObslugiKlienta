@@ -9,7 +9,7 @@ namespace systemObslugiKlienta.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(systemObslugiKlienta.Models.SystemObslugiKlientaContext context)

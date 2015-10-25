@@ -99,15 +99,7 @@ namespace systemObslugiKlienta.Models
 
         [Required]
         [Display(Name = "Company Name")]
-        public long CompanyName { get; set; }
-
-        [Required]
-        [Display(Name = "REGON")]
-        public long REGON { get; set; }
-
-        [Required]
-        [Display(Name = "NIP")]
-        public long NIP { get; set; }
+        public string CompanyName { get; set; }
 
         [Required]
         [Display(Name = "Account Type")]

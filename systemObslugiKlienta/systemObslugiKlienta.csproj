@@ -183,13 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510161843063_aaa.cs" />
-    <Compile Include="Migrations\201510161843063_aaa.Designer.cs">
-      <DependentUpon>201510161843063_aaa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510161845595_bb.cs" />
-    <Compile Include="Migrations\201510161845595_bb.Designer.cs">
-      <DependentUpon>201510161845595_bb.cs</DependentUpon>
+    <Compile Include="Migrations\201510251746059_Initial.cs" />
+    <Compile Include="Migrations\201510251746059_Initial.Designer.cs">
+      <DependentUpon>201510251746059_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\UserAccountViewModels.cs" />
@@ -217,6 +213,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -272,14 +269,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\BazyDanych\Create.cshtml" />
-    <Content Include="Views\BazyDanych\Delete.cshtml" />
-    <Content Include="Views\BazyDanych\Details.cshtml" />
-    <Content Include="Views\BazyDanych\Edit.cshtml" />
-    <Content Include="Views\BazyDanych\Index.cshtml" />
+    <Content Include="Views\UserDataBases\Create.cshtml" />
+    <Content Include="Views\UserDataBases\Delete.cshtml" />
+    <Content Include="Views\UserDataBases\Details.cshtml" />
+    <Content Include="Views\UserDataBases\Edit.cshtml" />
+    <Content Include="Views\UserDataBases\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BazyDanych\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -289,11 +287,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510161843063_aaa.resx">
-      <DependentUpon>201510161843063_aaa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510161845595_bb.resx">
-      <DependentUpon>201510161845595_bb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510251746059_Initial.resx">
+      <DependentUpon>201510251746059_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

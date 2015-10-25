@@ -17,16 +17,16 @@ using System.Threading.Tasks;
 namespace systemObslugiKlienta.Controllers
 {
     [Authorize]
-    public class DataBasesController : Controller
+    public class UserDataBasesController : Controller
     {
         private SystemObslugiKlientaContext db = new SystemObslugiKlientaContext();
         private UserManager _userManager;
 
-        public DataBasesController()
+        public UserDataBasesController()
         {
 
         }
-        public DataBasesController(UserManager userManager, ApplicationSignInManager signInManager)
+        public UserDataBasesController(UserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
         }
@@ -44,22 +44,22 @@ namespace systemObslugiKlienta.Controllers
             }
         }
 
-        // GET: DataBases
+        // GET: UserDataBases
          [AllowAnonymous]
         public ActionResult Index()
         {
-            var DataBases = db.DataBases.Include(b => b.User);
-            return View(DataBases.ToList());
+            var UserDataBases = db.UserDataBases.Include(b => b.User);
+            return View(UserDataBases.ToList());
         }
 
-        // GET: DataBases/Details/5
+        // GET: UserDataBases/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDataBase UserDataBase = db.DataBases.Find(id);
+            UserDataBase UserDataBase = db.UserDataBases.Find(id);
             if (UserDataBase == null)
             {
                 return HttpNotFound();
@@ -67,7 +67,7 @@ namespace systemObslugiKlienta.Controllers
             return View(UserDataBase);
         }
 
-        // GET: DataBases/Create
+        // GET: UserDataBases/Create
         public ActionResult Create()
         {
             
@@ -75,7 +75,7 @@ namespace systemObslugiKlienta.Controllers
             return View();
         }
 
-        // POST: DataBases/Create
+        // POST: UserDataBases/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -101,9 +101,9 @@ namespace systemObslugiKlienta.Controllers
                             baza.DataContent = reader.ReadBytes(upload.ContentLength);
                         }
                         var user1 = db.User.First(user => user.Id == eMail.Id);
-                        user1.DataBases.Add(baza);
+                        user1.UserDataBases.Add(baza);
                     }
-                    db.DataBases.Add(UserDataBase);
+                    db.UserDataBases.Add(UserDataBase);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -118,7 +118,7 @@ namespace systemObslugiKlienta.Controllers
 
             //if (ModelState.IsValid)
             //{
-            //    db.DataBases.Add(UserDataBase);
+            //    db.UserDataBases.Add(UserDataBase);
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
@@ -129,14 +129,14 @@ namespace systemObslugiKlienta.Controllers
             //return View(UserDataBase);
         }
 
-        // GET: DataBases/Edit/5
+        // GET: UserDataBases/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDataBase UserDataBase = db.DataBases.Find(id);
+            UserDataBase UserDataBase = db.UserDataBases.Find(id);
             if (UserDataBase == null)
             {
                 return HttpNotFound();
@@ -145,7 +145,7 @@ namespace systemObslugiKlienta.Controllers
             return View(UserDataBase);
         }
 
-        // POST: DataBases/Edit/5
+        // POST: UserDataBases/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -162,14 +162,14 @@ namespace systemObslugiKlienta.Controllers
             return View(UserDataBase);
         }
 
-        // GET: DataBases/Delete/5
+        // GET: UserDataBases/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDataBase UserDataBase = db.DataBases.Find(id);
+            UserDataBase UserDataBase = db.UserDataBases.Find(id);
             if (UserDataBase == null)
             {
                 return HttpNotFound();
@@ -177,13 +177,13 @@ namespace systemObslugiKlienta.Controllers
             return View(UserDataBase);
         }
 
-        // POST: DataBases/Delete/5
+        // POST: UserDataBases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserDataBase UserDataBase = db.DataBases.Find(id);
-            db.DataBases.Remove(UserDataBase);
+            UserDataBase UserDataBase = db.UserDataBases.Find(id);
+            db.UserDataBases.Remove(UserDataBase);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "DataBases", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "UserDataBases", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
         <div class="form-group">
-            @Html.Label("Baza", new { @class = "control-label col-md-2" })
+            @Html.Label("DataBase", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file"  name="upload" />
             </div>

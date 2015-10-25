@@ -16,7 +16,7 @@ namespace systemObslugiKlienta.Models
     {
         public User()
         {
-            this.DataBases = new HashSet<UserDataBase>();
+            this.UserDataBases = new HashSet<UserDataBase>();
         }
 
         //klucz glowny odziedziczony po klasie IdentityUser
@@ -27,14 +27,11 @@ namespace systemObslugiKlienta.Models
         public string LastName { get; set; }
         public string Address { get; set; }
         public string CompanyName { get; set; }
-        public long REGON { get; set; }
-        public long NIP { get; set; }
 
         //System Info
         public UserAccountType AccountType { get; set; }
         public DateTime RegisterDate { get; set; }
         public DateTime BlockDate { get; set; }
-        public int IfBlocked { get; set; }
 
 #region dodatkowe pole NotMapped
         [NotMapped]
@@ -45,7 +42,7 @@ namespace systemObslugiKlienta.Models
         }
 #endregion
 
-        public virtual ICollection<UserDataBase> DataBases { get;  set; }
+        public virtual ICollection<UserDataBase> UserDataBases { get;  set; }
 
         //kod domyslny
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

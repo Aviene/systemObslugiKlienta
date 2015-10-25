@@ -76,7 +76,7 @@ namespace systemObslugiKlienta.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,7 +152,7 @@ namespace systemObslugiKlienta.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, AccountType = model.AccountType};
+                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, AccountType = model.AccountType, Address = model.Address, CompanyName = model.CompanyName, RegisterDate = System.DateTime.Now, BlockDate = System.DateTime.Now.AddMinutes(1) };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -167,6 +167,7 @@ namespace systemObslugiKlienta.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+
             }
 
             // If we got this far, something failed, redisplay form
