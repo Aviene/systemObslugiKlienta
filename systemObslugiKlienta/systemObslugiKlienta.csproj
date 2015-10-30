@@ -187,6 +187,18 @@
     <Compile Include="Migrations\201510251746059_Initial.Designer.cs">
       <DependentUpon>201510251746059_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510260819128_aaa.cs" />
+    <Compile Include="Migrations\201510260819128_aaa.Designer.cs">
+      <DependentUpon>201510260819128_aaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510301206345_databazy.cs" />
+    <Compile Include="Migrations\201510301206345_databazy.Designer.cs">
+      <DependentUpon>201510301206345_databazy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510301222020_datka.cs" />
+    <Compile Include="Migrations\201510301222020_datka.Designer.cs">
+      <DependentUpon>201510301222020_datka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\UserAccountViewModels.cs" />
     <Compile Include="Models\UserDataBaseViewModel.cs" />
@@ -289,6 +301,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510251746059_Initial.resx">
       <DependentUpon>201510251746059_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510260819128_aaa.resx">
+      <DependentUpon>201510260819128_aaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510301206345_databazy.resx">
+      <DependentUpon>201510301206345_databazy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510301222020_datka.resx">
+      <DependentUpon>201510301222020_datka.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

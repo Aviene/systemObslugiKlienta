@@ -94,7 +94,8 @@ namespace systemObslugiKlienta.Controllers
                         var baza = new UserDataBase
                         {
                             FileName = System.IO.Path.GetFileName(upload.FileName),
-                            DataContentType = upload.ContentType
+                            DataContentType = upload.ContentType,
+                            AddDate = System.DateTime.Now
                         };
                         using (var reader = new System.IO.BinaryReader(upload.InputStream))
                         {
@@ -103,7 +104,7 @@ namespace systemObslugiKlienta.Controllers
                         var user1 = db.User.First(user => user.Id == eMail.Id);
                         user1.UserDataBases.Add(baza);
                     }
-                    db.UserDataBases.Add(UserDataBase);
+                    //db.UserDataBases.Add(UserDataBase);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

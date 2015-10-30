@@ -9,56 +9,13 @@
 <div>
     <h4>UserDataBase</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </dt>
+    
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
+    @System.Text.Encoding.UTF8.GetString(Model.DataContent)
+           
+        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FileName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FileName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataContentType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataContentType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataContent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataContent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FileType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TypPliku)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AddDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AddDate)
-        </dd>
-
-    </dl>
+    
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.FileId }) |

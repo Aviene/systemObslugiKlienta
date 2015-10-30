@@ -21,8 +21,7 @@ namespace systemObslugiKlienta.Models
 
         public byte[] DataContent { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public System.DateTime AddDate { get; set; }
 
         public string UserId { get; set; }
