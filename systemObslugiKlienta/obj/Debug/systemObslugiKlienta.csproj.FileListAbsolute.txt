@@ -107,9 +107,5 @@ C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\sys
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.csprojResolveAssemblyReference.cache
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.dll
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta - Kopia\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.pdb
-C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.Migrations.Initial.resources
+C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.Migrations.initial.resources
 C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.csproj.GenerateResource.Cache
-C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.csprojResolveAssemblyReference.cache
-C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.Migrations.aaa.resources
-C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.Migrations.databazy.resources
-C:\STUDIA\Praca Inżynierska\Praca Inżynierska\systemObslugiKlienta\systemObslugiKlienta\obj\Debug\systemObslugiKlienta.Migrations.datka.resources

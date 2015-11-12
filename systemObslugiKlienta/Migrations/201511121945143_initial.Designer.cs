@@ -7,13 +7,13 @@ namespace systemObslugiKlienta.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class datka : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(datka));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510301222020_datka"; }
+            get { return "201511121945143_initial"; }
         }
         
         string IMigrationMetadata.Source

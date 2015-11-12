@@ -17,6 +17,8 @@ namespace systemObslugiKlienta.Models
         public User()
         {
             this.UserDataBases = new HashSet<UserDataBase>();
+            UserStorage = new HashSet<UserStorage>();
+            UserShards = new HashSet<UserShards>();
         }
 
         //klucz glowny odziedziczony po klasie IdentityUser
@@ -43,6 +45,10 @@ namespace systemObslugiKlienta.Models
 #endregion
 
         public virtual ICollection<UserDataBase> UserDataBases { get;  set; }
+
+        public virtual ICollection<UserStorage> UserStorage { get; set; }
+
+        public virtual ICollection<UserShards> UserShards { get; set; }
 
         //kod domyslny
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

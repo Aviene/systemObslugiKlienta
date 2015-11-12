@@ -11,7 +11,7 @@ namespace systemObslugiKlienta.Models
     {
 
         public SystemObslugiKlientaContext()
-            : base("DefaultConnection")
+            : base("MainDatabase")
         {
         }
         public static SystemObslugiKlientaContext Create()
@@ -22,6 +22,10 @@ namespace systemObslugiKlienta.Models
         public DbSet<UserDataBase> UserDataBases { get; set; }
 
         public DbSet<User> User { get; set; }
+        public virtual DbSet<Servers> Servers { get; set; }
+        public virtual DbSet<UserShards> UserShards { get; set; }
+        public virtual DbSet<UserStorage> UserStorage { get; set; }
+
 
         #region Usunięcie domyślnej konwencji zamieniającej na liczby mnogie
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
