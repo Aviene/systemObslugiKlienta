@@ -18,9 +18,15 @@ namespace systemObslugiKlienta.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        public JsonResult TableRows(string TableName)
+        public JsonResult ListColumns(string TableName)
         {
-            List<string> RowsList = clientDatabaseManagement.ListColumnsForTable(TableName);
+            List<string> ColumnsList = clientDatabaseManagement.ListColumnsForTable(TableName);
+            return Json(ColumnsList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult TableRows(string TableName, IEnumerable<string> columns)
+        {
+            List<dynamic> RowsList = clientDatabaseManagement.GetFirstTenRows(TableName, columns);
             return Json(RowsList, JsonRequestBehavior.AllowGet);
         }
     }
