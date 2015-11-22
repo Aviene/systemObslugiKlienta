@@ -7,7 +7,7 @@ namespace systemObslugiKlienta.Models
     using System.Data.Entity.Spatial;
 
     [Table("UserStorage")]
-    public partial class UserStorage
+    public class UserStorage
     {
         public int ID { get; set; }
 

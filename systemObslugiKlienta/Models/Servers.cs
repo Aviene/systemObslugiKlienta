@@ -6,9 +6,8 @@ namespace systemObslugiKlienta.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Servers
+    public class Servers
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Servers()
         {
             UserShards = new HashSet<UserShards>();
@@ -28,9 +27,8 @@ namespace systemObslugiKlienta.Models
         [StringLength(150)]
         public string Password { get; set; }
 
-        public int? ActiveShards { get; set; }
+        public int? ActiveShards { get; set; }  // ? mo¿e byæ nullem (domyœln¹ wartoœci¹ jest NULL, a bez ? 0)
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserShards> UserShards { get; set; }
     }
 }
