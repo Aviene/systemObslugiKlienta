@@ -1,11 +1,13 @@
 ﻿$(document).ready(function () {
+
+    //Pbieranie listy kolumn w tabeli
     $('a.tableName').on('click', function () {
         
         $("div#columns").empty();
         //alert($(this).text());
         
-
-        $.getJSON("/ClientDatabaseManagement/ListColumns", { TableName: $(this).text() }, function (data) {
+        var tableName = $(this).text();
+        $.getJSON("/ClientDatabaseManagement/ListColumns", { TableName: tableName }, function (data) {
             var items = [];
             var i = 0; // ilość kolumn
            // alert();
@@ -18,11 +20,13 @@
             //alert(animationTime);
             $("<ul/>", {
                 "class": "list-group checked-list-box",
+                "id": "check-list-box",
                 html: items.join("")
             }).appendTo("div#columns").hide().animate({ height: 'toggle' }, animationTime);
 
             $("<a/>", {
-                "class": "btn btn-primary getTenFirstRows",
+                "class": "btn btn-primary",
+                "id": "getTenFirstRows",
                 text: "Execute",
                 href: "#"
             }).appendTo("div#columns");
@@ -92,13 +96,35 @@
                     }
                 }
                 init();
-            });
 
+               
+            });
+            $('a#getTenFirstRows').on('click', function (event) {
+                //event.preventDefault();
+
+                var checkedItems = {}, i = 0;
+                $("#check-list-box li.active").each(function (idx, li) {
+                    checkedItems[i] = $(li).text();
+
+                    i++;
+                });
+                console.log("Dupa");
+                $.getJSON("/ClientDatabaseManagement/TableRows", { TableName: tableName, columns: checkedItems }, function (data) {
+
+                });
+                //console.log($(JSON.stringify(checkedItems)));
+                //console.log($(JSON.stringify(checkedItems, String)));
+                //$('div#firstTenRows').html(JSON.stringify(checkedItems, null, '\t'));
+            });
         })
+
+       
         
         
         
     })
+
+    
 
     
 })
