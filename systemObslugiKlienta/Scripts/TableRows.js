@@ -1,12 +1,12 @@
 ﻿$(document).ready(function () {
     $('a.tableName').on('click', function () {
-        var items = [];
+        
         $("div#columns").empty();
         //alert($(this).text());
         
 
         $.getJSON("/ClientDatabaseManagement/ListColumns", { TableName: $(this).text() }, function (data) {
-
+            var items = [];
             var i = 0; // ilość kolumn
            // alert();
             $.each(data, function (key, val) {
@@ -27,10 +27,10 @@
                 href: "#"
             }).appendTo("div#columns");
 
-            $.each(items, function (key, val) {
-
+            $('.list-group.checked-list-box .list-group-item').each(function () {
+                //console.log($('.list-group.checked-list-box .list-group-item'));
                 // Settings
-                var $widget = $(items[key]),
+                var $widget = $(this),
                     $checkbox = $('<input type="checkbox" class="hidden" />'),
                     color = ($widget.data('color') ? $widget.data('color') : "primary"),
                     style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
