@@ -4,6 +4,7 @@
     $('a.tableName').on('click', function () {
         
         $("div#columns").empty();
+        $("div#firstTenRows").empty();
         //alert($(this).text());
         
         var tableName = $(this).text();
@@ -101,30 +102,34 @@
             });
             $('a#getTenFirstRows').on('click', function (event) {
                 //event.preventDefault();
-
-                var checkedItems = {}, i = 0;
+                $("div#firstTenRows").empty();
+                var checkedItems = {}, n = 0;
                 $("#check-list-box li.active").each(function (idx, li) {
-                    checkedItems[i] = $(li).text();
-
-                    i++;
+                    checkedItems[n] = $(li).text();
+                    //console.log(checkedItems);
+                    n++;
                 });
-                console.log("Dupa");
+                
                 $.getJSON("/ClientDatabaseManagement/TableRows", { TableName: tableName, columns: checkedItems }, function (data) {
 
+                    $("<table />", { "class": "table table-bordered table-striped" }).appendTo('div#firstTenRows'); // dodanie tabeli
+                    $("<tr />", { "class": "headers" }).appendTo('div#firstTenRows table'); // nadanie wiersza z etykietami
+
+                    for (var i = 0; i < n; i++) {
+                        $('div#firstTenRows table tr.headers').append("<th>" + data[0][i].Key + "</th>"); // drukowanie poszczególnych etykiet tabeli
+                    }
+
+                    $.each(data, function (key, val) {
+
+                        $("<tr />", { "class": key }).appendTo('div#firstTenRows table');
+
+                        for (var i = 0; i < n; i++) {     
+                            $('div#firstTenRows table tr.' + key).append("<td class='" + i + "'>" + val[i].Value + "</td>"); //wypełnianie danymi
+                        }   
+                        
+                    });                    
                 });
-                //console.log($(JSON.stringify(checkedItems)));
-                //console.log($(JSON.stringify(checkedItems, String)));
-                //$('div#firstTenRows').html(JSON.stringify(checkedItems, null, '\t'));
             });
-        })
-
-       
-        
-        
-        
-    })
-
-    
-
-    
+        })   
+    })  
 })
