@@ -25,11 +25,12 @@
                 html: items.join("")
             }).appendTo("div#columns").hide().animate({ height: 'toggle' }, animationTime);
 
-            $("<a/>", {
+            $("<button/>", {
                 "class": "btn btn-primary",
                 "id": "getTenFirstRows",
-                text: "Execute",
-                href: "#"
+                "data-toggle": "modal",
+                "data-target": "#myModal",
+                text: "Execute"
             }).appendTo("div#columns");
 
             $('.list-group.checked-list-box .list-group-item').each(function () {
@@ -53,13 +54,29 @@
 
                 // Event Handlers
                 $widget.on('click', function () {
-                    $checkbox.prop('checked', !$checkbox.is(':checked'));
-                    $checkbox.triggerHandler('change');
-                    updateDisplay();
+                    if ($("#check-list-box li.active").size() >= 10) {
+
+                        if (!$checkbox.is(':checked')) {
+                            alert("Only 10 columns allowed");
+                        } else {
+                            $checkbox.prop('checked', !$checkbox.is(':checked'));
+                            $checkbox.triggerHandler('change');
+                            updateDisplay();
+                        }
+
+                    } else {
+                        $checkbox.prop('checked', !$checkbox.is(':checked'));
+                        $checkbox.triggerHandler('change');
+                        updateDisplay();
+                    }
+                    
                 });
+                
                 $checkbox.on('change', function () {
-                    updateDisplay();
-                });
+                    
+                        updateDisplay();
+                    }                    
+                );
 
 
                 // Actions
@@ -100,7 +117,7 @@
 
                
             });
-            $('a#getTenFirstRows').on('click', function (event) {
+            $('button#getTenFirstRows').on('click', function (event) {
                 //event.preventDefault();
                 $("div#firstTenRows").empty();
                 var checkedItems = {}, n = 0;
