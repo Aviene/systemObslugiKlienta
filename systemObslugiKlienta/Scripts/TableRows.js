@@ -133,7 +133,7 @@
                     $("<tr />", { "class": "headers" }).appendTo('div#firstTenRows table'); // nadanie wiersza z etykietami
 
                     for (var i = 0; i < n; i++) {
-                        $('div#firstTenRows table tr.headers').append("<th>" + data[0][i].Key + "</th>"); // drukowanie poszczególnych etykiet tabeli
+                        $('div#firstTenRows table tr.headers').append("<th style='" + "cursor: pointer;" + "'> <span class='" + "state-icon glyphicon glyphicon-unchecked" + "'></span> <span class='" + "columnName" + "'>" + data[0][i].Key + "</span></th>"); // drukowanie poszczególnych etykiet tabeli
                     }
 
                     $.each(data, function (key, val) {
@@ -144,9 +144,61 @@
                             $('div#firstTenRows table tr.' + key).append("<td class='" + i + "'>" + val[i].Value + "</td>"); //wypełnianie danymi
                         }   
                         
-                    });                    
+                    });
+                    var chosenColumns = [];
+                    $('div#firstTenRows table tr.headers th').on('click', function () {
+
+                        var index = $(this).index().toString();
+
+                        if (chosenColumns.length >= 4) {
+
+                            if ($('span.state-icon', this).hasClass('glyphicon-unchecked')) {
+
+                                alert("More than 4 columns are not allowed");
+
+                            } else {
+                                $('span.state-icon', this).removeClass('glyphicon-check');
+                                $('span.state-icon', this).addClass('glyphicon-unchecked');
+                                $(this).removeClass('btn-primary');
+
+                                if ($('div#firstTenRows table td').hasClass(index)) {
+                                    $('div#firstTenRows table td.' + index).removeClass('btn-primary');
+                                }
+
+                                chosenColumns.pop($('span.columnName', this).text());
+                            }
+                        } else {
+                            if ($('span.state-icon', this).hasClass('glyphicon-unchecked')) {
+                                $('span.state-icon', this).removeClass('glyphicon-unchecked');
+                                $('span.state-icon', this).addClass('glyphicon-check');
+                                $(this).addClass('btn-primary');
+
+                                if ($('div#firstTenRows table td').hasClass(index)) {
+                                    $('div#firstTenRows table td.' + index).addClass('btn-primary');
+                                };
+
+                                chosenColumns.push($('span.columnName', this).text());
+                            } else {
+                                $('span.state-icon', this).removeClass('glyphicon-check');
+                                $('span.state-icon', this).addClass('glyphicon-unchecked');
+                                $(this).removeClass('btn-primary');
+
+                                if ($('div#firstTenRows table td').hasClass(index)) {
+                                    $('div#firstTenRows table td.' + index).removeClass('btn-primary');
+                                }
+
+                                chosenColumns.pop($('span.columnName', this).text());
+                            }
+                        }
+                        console.log(chosenColumns);
+                        console.log(chosenColumns.length);
+                    });
+                    
                 });
+
             });
+
+            
         })   
     })  
 })
