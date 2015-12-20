@@ -5,25 +5,88 @@
 }
 
 <h2>Client Database Management</h2>
-<div class="row">
-    <div class="col-lg-3">
-        <div class="list-group" id="tables">
-            @foreach (var item in Model)
-            {
-                <a href="#"class="list-group-item tableName">@Html.DisplayFor(modelItem => item)</a>
-            }
+
+<div id="steps-nav">
+    <div class="row">
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" id="step1-tab" class="active"><a href="#step1">Step 1: People clustering method</a></li>
+            <li role="presentation" id="step2-tab" class="disabled"><a href="#step2">Step 2: Algorithm input data</a></li>
+            <li role="presentation" id="step3-tab" class="disabled"><a href="#step3">Step 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="steps-content">
+
+    <div id="step1" class="tab">
+
+        <div class="row step">
+
+            <div class="col-lg-4 div-huge-btn">
+                <a href="#" class="huge-btn huge-btn-default" id="0">
+                    <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    <span class="description">Total spent amount</span>
+                </a>
+            </div>
+
+            <div class="col-lg-4 div-huge-btn">
+                <a href="#" class="huge-btn huge-btn-default" id="1">
+                    <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    <span class="description">Number of transactions in time period</span>
+                </a>
+            </div>
+
+            <div class="col-lg-4 div-huge-btn">
+                <a href="#" class="huge-btn huge-btn-default" id="2">
+                    <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    <span class="description">Last transaction date</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-lg-offset-9">
+                <a href="#" class="btn btn-primary btn-lg btn-prev-next disabled next-step">Next step</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="step2" class="tab">
+
+        <div class="row step">
+
+            <div class="col-lg-3">
+                <div class="list-group" id="tables">
+                    @foreach (var item in Model)
+                    {
+                        <a href="#" class="list-group-item tableName">@Html.DisplayFor(modelItem => item)</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3" id="columns">
+
+            </div>
+
+            <div class="col-lg-6" id="firstTenRows">
+
+            </div>
         </div>
     </div>
-    <div class="col-lg-3" id="columns">
+
+
+    <div id="step3" class="tab">
+
+        <div class="row step">
+
+        </div>
 
     </div>
 
-    <div class="col-lg-6" id="firstTenRows">
-
-    </div>
 </div>
 
 
 @section Scripts {
-    @Scripts.Render("~/Scripts/TableRows.js")
+    @Scripts.Render("~/Scripts/tabs.js")
+    @Scripts.Render("~/Scripts/cdm-step1.js")
+    @Scripts.Render("~/Scripts/cdm-step2.js")
 }
