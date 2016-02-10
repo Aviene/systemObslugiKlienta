@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace systemObslugiKlienta.Models
 {
 
-    public class User : IdentityUser
+    public class User : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim> 
     {
         public User()
         {
@@ -51,7 +51,7 @@ namespace systemObslugiKlienta.Models
         public virtual ICollection<UserShards> UserShards { get; set; }
 
         //kod domyslny
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User, int> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -59,4 +59,31 @@ namespace systemObslugiKlienta.Models
             return userIdentity;
         }
     }
+
+    public class CustomUserRole : IdentityUserRole<int> { }
+    public class CustomUserClaim : IdentityUserClaim<int> { }
+    public class CustomUserLogin : IdentityUserLogin<int> { }
+
+    public class CustomRole : IdentityRole<int, CustomUserRole>
+    {
+        public CustomRole() { }
+        public CustomRole(string name) { Name = name; }
+    }
+
+    public class CustomUserStore : UserStore<User, CustomRole, int,
+        CustomUserLogin, CustomUserRole, CustomUserClaim>
+    {
+        public CustomUserStore(SystemObslugiKlientaContext context)
+            : base(context)
+        {
+        }
+    }
+
+    public class CustomRoleStore : RoleStore<CustomRole, int, CustomUserRole>
+    {
+        public CustomRoleStore(SystemObslugiKlientaContext context)
+            : base(context)
+        {
+        }
+    } 
 }

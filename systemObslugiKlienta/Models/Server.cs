@@ -6,9 +6,9 @@ namespace systemObslugiKlienta.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public class Servers
+    public class Server
     {
-        public Servers()
+        public Server()
         {
             UserShards = new HashSet<UserShards>();
         }

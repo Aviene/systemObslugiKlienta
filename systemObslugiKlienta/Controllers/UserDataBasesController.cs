@@ -101,7 +101,7 @@ namespace systemObslugiKlienta.Controllers
                         {
                             baza.DataContent = reader.ReadBytes(upload.ContentLength);
                         }
-                        var user1 = db.User.First(user => user.Id == eMail.Id);
+                        var user1 = db.Users.First(user => user.Id == eMail.Id);
                         user1.UserDataBases.Add(baza);
                     }
                     //db.UserDataBases.Add(UserDataBase);

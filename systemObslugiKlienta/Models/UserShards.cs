@@ -14,7 +14,7 @@ namespace systemObslugiKlienta.Models
         public int ServerId { get; set; }
         public int UserId { get; set; }
 
-        public virtual Servers Servers { get; set; }
+        public virtual Server Servers { get; set; }
         public virtual User User { get; set; }
     }
 }

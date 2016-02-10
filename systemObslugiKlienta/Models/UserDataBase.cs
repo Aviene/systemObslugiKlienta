@@ -24,7 +24,7 @@ namespace systemObslugiKlienta.Models
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public System.DateTime AddDate { get; set; }
 
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual User User { get; set; }
     }

@@ -7,7 +7,8 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace systemObslugiKlienta.Models
 {
-    public class SystemObslugiKlientaContext : IdentityDbContext
+    public class SystemObslugiKlientaContext : IdentityDbContext<User, CustomRole,
+    int, CustomUserLogin, CustomUserRole, CustomUserClaim> 
     {
 
         public SystemObslugiKlientaContext()
@@ -21,8 +22,8 @@ namespace systemObslugiKlienta.Models
 
         public DbSet<UserDataBase> UserDataBases { get; set; }
 
-        public DbSet<User> User { get; set; }
-        public virtual DbSet<Servers> Servers { get; set; }
+        //public DbSet<User> Users { get; set; }
+        public virtual DbSet<Server> Servers { get; set; }
         public virtual DbSet<UserShards> UserShards { get; set; }
         public virtual DbSet<UserStorage> UserStorage { get; set; }
 

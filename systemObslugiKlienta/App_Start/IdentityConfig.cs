@@ -34,18 +34,18 @@ namespace systemObslugiKlienta
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class UserManager : UserManager<User>
+    public class UserManager : UserManager<User, int>
     {
-        public UserManager(IUserStore<User> store)
+        public UserManager(IUserStore<User, int> store)
             : base(store)
         {
         }
 
         public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context) 
         {
-            var manager = new UserManager(new UserStore<User>(context.Get<SystemObslugiKlientaContext>()));
+            var manager = new UserManager(new CustomUserStore(context.Get<SystemObslugiKlientaContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<User>(manager)
+            manager.UserValidator = new UserValidator<User, int>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -68,11 +68,11 @@ namespace systemObslugiKlienta
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User, int>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User, int>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -83,14 +83,14 @@ namespace systemObslugiKlienta
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<User, int>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<User, string>
+    public class ApplicationSignInManager : SignInManager<User, int>
     {
         public ApplicationSignInManager(UserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
