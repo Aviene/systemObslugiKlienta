@@ -1,4 +1,5 @@
-﻿@model IEnumerable<string>
+﻿@model List<Tuple<string,string>>
+
 
 @{
     ViewBag.Title = "Index";
@@ -9,9 +10,10 @@
 <div id="steps-nav">
     <div class="row">
         <ul class="nav nav-tabs nav-justified">
-            <li role="presentation" id="step1-tab" class="active"><a href="#step1">Step 1: People clustering method</a></li>
-            <li role="presentation" id="step2-tab" class="disabled"><a href="#step2">Step 2: Algorithm input data</a></li>
-            <li role="presentation" id="step3-tab" class="disabled"><a href="#step3">Step 3</a></li>
+            <li role="presentation" id="step1-tab" class="active"><a href="#step1">Step 1: Database choosing</a></li>
+            <li role="presentation" id="step2-tab" class="disabled"><a href="#step2">Step 2: People clustering method</a></li>
+            <li role="presentation" id="step3-tab" class="disabled"><a href="#step3">Step 3: Algorithm input data</a></li>
+            <li role="presentation" id="step4-tab" class="disabled"><a href="#step4">Step 4</a></li>
         </ul>
     </div>
 </div>
@@ -19,6 +21,25 @@
 <div id="steps-content">
 
     <div id="step1" class="tab">
+        <div class="row step">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 div-huge-btn">
+                    <a href="#" class="huge-btn huge-btn-default">
+                        <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                        <span class="description shardName">@Html.DisplayFor(modelItem => item.Item2)</span>
+                        <span class="hidden serverName">@Html.DisplayFor(modelItem => item.Item1)</span>
+                    </a>
+                </div>
+            }
+
+            <div class="col-lg-3 pull-right">
+                <a href="#" class="btn btn-primary btn-lg btn-prev-next disabled next-step" id="step2-">Next step</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="step2" class="tab">
 
         <div class="row step">
 
@@ -43,25 +64,24 @@
                 </a>
             </div>
 
-            <div class="col-lg-3 col-lg-offset-9">
-                <a href="#" class="btn btn-primary btn-lg btn-prev-next disabled next-step">Next step</a>
+            <div class="col-lg-3">
+                <a href="#" class="btn btn-primary btn-lg btn-prev-next prev-step" id="step1-">Previous step</a>
+            </div>
+
+            <div class="col-lg-3 pull-right">
+                <a href="#" class="btn btn-primary btn-lg btn-prev-next disabled next-step" id="step3-">Next step</a>
             </div>
 
         </div>
 
     </div>
 
-    <div id="step2" class="tab">
+    <div id="step3" class="tab">
 
         <div class="row step">
 
-            <div class="col-lg-3">
-                <div class="list-group" id="tables">
-                    @foreach (var item in Model)
-                    {
-                        <a href="#" class="list-group-item tableName">@Html.DisplayFor(modelItem => item)</a>
-                    }
-                </div>
+            <div class="col-lg-3" id="tables">
+                
             </div>
             <div class="col-lg-3" id="columns">
 
@@ -74,7 +94,7 @@
     </div>
 
 
-    <div id="step3" class="tab">
+    <div id="step4" class="tab">
 
         <div class="row step">
 
@@ -89,4 +109,5 @@
     @Scripts.Render("~/Scripts/tabs.js")
     @Scripts.Render("~/Scripts/cdm-step1.js")
     @Scripts.Render("~/Scripts/cdm-step2.js")
+    @Scripts.Render("~/Scripts/cdm-step3.js")
 }

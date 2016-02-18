@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    $('a.btn-prev-next').on('click', function (e) {
+        $("ul.nav-tabs li#" + $(this).attr('id')+ "tab a").trigger("click");
+    });
+
     $('ul.nav-tabs li a').on('click', function (e) {
         e.preventDefault();
         if (!$(this).parent().hasClass('disabled')) {
